@@ -439,10 +439,10 @@ def add_episode_into_plex(media, file, root, path, show, season=1, ep=1, title="
     if Dict(mappingList, 'episodeoffset'):  ep, ep2 = ep+int(Dict(mappingList, 'episodeoffset')), ep2+int(Dict(mappingList, 'episodeoffset')) if ep2 else None 
     if Dict(mappingList, 'defaulttvdbseason') and not Dict(mappingList, 'defaulttvdbseason_a', default=False):  season = int(Dict(mappingList, 'defaulttvdbseason'))
 
-  if title==title.lower() or title==title.upper() and title.count(" ")>0: title           = title.title()        # capitalise if all caps or all lowercase and one space at least
-  if ep<=0 and season == 0:                          COUNTER = COUNTER+1; season, ep, ep2 = 0, COUNTER, COUNTER  # s00e00    => s00e5XX (happens when ScudLee mapps to S0E0)
-  if ep<=0 and season > 0:                                                season, ep, ep2 = 0, 1, 1              # s[1-0]e00 => s00e01
-  if not ep2 or ep > ep2:                                                 ep2             = ep                   #  make ep2 same as ep for loop and tests
+  if title==title.lower() or title==title.upper() and title.count(" ")>0: title           = stringModule.capwords(title)	# capitalise if all caps or all lowercase and one space at least
+  if ep<=0 and season == 0:                          COUNTER = COUNTER+1; season, ep, ep2 = 0, COUNTER, COUNTER				# s00e00    => s00e5XX (happens when ScudLee mapps to S0E0)
+  if ep<=0 and season > 0:                                                season, ep, ep2 = 0, 1, 1              			# s[1-0]e00 => s00e01
+  if not ep2 or ep > ep2:                                                 ep2             = ep                   			#  make ep2 same as ep for loop and tests
   if tvdb_mapping and season > 0 :
     max_ep_num, season_buffer = max(tvdb_mapping.keys()), 0 if unknown_series_length else 1
     if   ep  in tvdb_mapping:               season, ep  = tvdb_mapping[ep ]
