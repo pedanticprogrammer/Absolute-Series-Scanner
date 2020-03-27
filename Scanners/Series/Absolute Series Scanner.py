@@ -16,6 +16,7 @@ import inspect                                                       # getfile, 
 import ssl                                                           # SSLContext
 import zipfile                                                       # ZipFile, namelist
 import json                                                          # loads
+import string as stringModule                                        # capwords
 from lxml import etree                                               # fromstring
 try:                 from ssl import PROTOCOL_TLS    as SSL_PROTOCOL # Python >= 2.7.13 #ssl.PROTOCOL_TLSv1
 except ImportError:  from ssl import PROTOCOL_SSLv23 as SSL_PROTOCOL # Python <  2.7.13
